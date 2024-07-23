@@ -25,14 +25,10 @@ class Rover {
             },
           });
         } else if (message.commands[index].commandType === "MODE_CHANGE") {
-          if (this.mode === "NORMAL") {
-            results.push({
-              completed: true,
-            });
-            this.mode = message.commands[index].value;
-          } else if (this.mode === "LOW_POWER") {
-            results.push({ completed: false });
-          }
+          results.push({
+            completed: true,
+          });
+          this.mode = message.commands[index].value;
         } else if (message.commands[index].commandType === "MOVE") {
           if (this.mode === "NORMAL") {
             results.push({
@@ -45,7 +41,7 @@ class Rover {
         }
       }
 
-      return (response = { Message: message.name, results: results });
+      return (response = { message: message.name, results: results });
     }
 
     return message.name;
